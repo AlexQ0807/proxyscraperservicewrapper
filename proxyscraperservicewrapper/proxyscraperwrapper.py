@@ -7,7 +7,8 @@ from compressortoolbox.compressor import Compressor
 
 class ProxyScraperWrapper:
     def __init__(self, scraper_proxy_service_url: str, basic_auth_username: str, basic_auth_password: str,
-                 crypto_password: str, scraperbox_token: str = None, scrapingant_token: str = None):
+                 crypto_password: str, scraperbox_token: str = None, scrapingant_token: str = None,
+                 js_rendering: bool = False):
         """
         :param scraper_proxy_service_url:
         :param basic_auth_username:
@@ -21,15 +22,17 @@ class ProxyScraperWrapper:
         self.crypto_password = crypto_password
         self.scraperbox_token = scraperbox_token
         self.scrapingant_token = scrapingant_token
+        self.js_rendering = js_rendering
 
-    def __fetch_html(self, scrape_url, api_name, api_token):
+    def __fetch_html(self, scrape_url, api_name, api_token, js_rendering=False):
         proxy_url = "{}/{}".format(self.scraper_proxy_service_url, api_name)
         encrypted_token = cryptocode.encrypt(api_token, self.crypto_password)
 
         payload = {
             "token": encrypted_token,
             "url": scrape_url,
-            "compress": True
+            "compress": True,
+            "jsRendering": True if js_rendering is True else False
         }
 
         headers = {
@@ -53,13 +56,15 @@ class ProxyScraperWrapper:
 
     def fetch_html_scraperbox(self, scrape_url):
         try:
-            return self.__fetch_html(scrape_url=scrape_url, api_name="scraperbox", api_token=self.scraperbox_token)
+            return self.__fetch_html(scrape_url=scrape_url, api_name="scraperbox",
+                                     api_token=self.scraperbox_token, js_rendering=self.js_rendering)
         except Exception as e:
             raise e
 
     def fetch_html_scrapingant(self, scrape_url):
         try:
-            return self.__fetch_html(scrape_url=scrape_url, api_name="scrappingant", api_token=self.scrapingant_token)
+            return self.__fetch_html(scrape_url=scrape_url, api_name="scrappingant",
+                                     api_token=self.scrapingant_token, js_rendering=self.js_rendering)
         except Exception as e:
             raise e
 
