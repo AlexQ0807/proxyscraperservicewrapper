@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='proxyscraperservicewrapper',
-    version='0.0.2',
+    version='1.0.2',
     author='Alex Q',
     author_email='alex.quan0807@gmail.com',
     description='Wrapper for Proxy Scraper Service',
@@ -15,7 +15,5 @@ setuptools.setup(
     packages=['proxyscraperservicewrapper'],
     install_requires=[
         "requests",
-        "cryptocode",
-        "compressortoolbox @ git+https://github.com/AlexQ0807/compressortoolbox.git"
     ],
 )

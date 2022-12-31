@@ -1,3 +1,1 @@
 requests
-cryptocode
-git+https://github.com/AlexQ0807/compressortoolbox.git

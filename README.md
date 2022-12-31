@@ -12,14 +12,12 @@ pip install git+https://github.com/AlexQ0807/proxyscraperservicewrapper.git
 ```
 from proxyscraperservicewrapper.proxyscraperwrapper import ProxyScraperWrapper
 
-ps = ProxyScraperWrapper(scraper_proxy_service_url=SCRAPER_PROXY_SERVICE_URL,
-                          basic_auth_username=AUTH_USERNAME,
-                          basic_auth_password=AUTH_PASSWORD,
-                          crypto_password=CRYPTO_PASSWORD,
-                          scraperbox_token=SCRAPEBOX_TOKEN,
-                          scrapingant_token=SCRAPINGANT_TOKEN)
+scrape_url = "google.com"
+scraperbox_token = "XXXXXXXXX"
 
-remaining_credits = ps.fetch_remaining_credits_scraperbox()
+# Fetch remaining credits
+remaining_credits = ProxyScraperWrapper.fetch_remaining_credits_scraperbox(token=scraperbox_token)
 
-ps.fetch_html_scraperbox(url)
+# Fetch scraped html content
+ProxyScraperWrapper.fetch_html_scraperbox(token=scraperbox_token, url=scrape_url, js_rendering=True)
 ```
