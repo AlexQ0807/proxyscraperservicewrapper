@@ -30,7 +30,6 @@ class ZenScrapeService(AbstractService):
 
     @classmethod
     def fetch_credit_usage_info(cls, token: str):
-        #NOTE: The ZenScrape API route returns 200 status inconsistently (As of Dec 2022) -> may be fixed in the future
         try:
             url = cls.__credit_usage_template.format(cls.__api_base_url, token)
             res = requests.get(url)

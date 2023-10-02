@@ -2,6 +2,7 @@ from typing import Optional
 from proxyscraperservicewrapper.services.scraperboxservice import ScraperBoxService
 from proxyscraperservicewrapper.services.scrapingantservice import ScrapingAntService
 from proxyscraperservicewrapper.services.webscrapingaiservice import WebScrapingAIService
+from proxyscraperservicewrapper.services.zenrowsservice import ZenRowsService
 from proxyscraperservicewrapper.services.zenscrapeservice import ZenScrapeService
 
 
@@ -67,5 +68,21 @@ class ProxyScraperWrapper:
     def fetch_remaining_credits_zenscrape(cls, token: str):
         try:
             return ZenScrapeService.fetch_credit_usage_info(token)
+        except Exception as e:
+            raise e
+
+    @classmethod
+    def fetch_html_zenrows(cls, token: str, scrape_url: str, js_rendering: Optional[bool] = False):
+        try:
+            return ZenRowsService.fetch_html(url=scrape_url,
+                                             token=token,
+                                             js_rendering=js_rendering)
+        except Exception as e:
+            raise e
+
+    @classmethod
+    def fetch_remaining_credits_zenrows(cls, token: str):
+        try:
+            return ZenRowsService.fetch_credit_usage_info(token)
         except Exception as e:
             raise e
