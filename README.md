@@ -19,5 +19,5 @@ token = "XXXXXXXXX"
 remaining_credits = ProxyScraperWrapper.fetch_remaining_credits_scrapingant(token=token)
 
 # Fetch scraped html content
-ProxyScraperWrapper.fetch_html_webscrapingai(token=token, url=scrape_url, js_rendering=True)
+ProxyScraperWrapper.fetch_html_scrapingant(token=token, scrape_url=scrape_url, js_rendering=True)
 ```

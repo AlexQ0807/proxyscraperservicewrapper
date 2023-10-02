@@ -12,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='MIT',
-    packages=['proxyscraperservicewrapper'],
+    packages=['proxyscraperservicewrapper', 'proxyscraperservicewrapper.services'],
     install_requires=[
         "requests",
     ],
