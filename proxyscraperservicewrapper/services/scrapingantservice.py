@@ -24,8 +24,7 @@ class ScrapingAntService(AbstractService):
                 query = cls.__query_template.format(cls.__api_base_url, url, "false")
 
             page = requests.get(query, headers=headers)
-            json_data = json.loads(page.text)
-            html = json_data['content']
+            html = page.content.decode("utf-8")
             return html
 
         except Exception as e:
